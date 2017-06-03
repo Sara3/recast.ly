@@ -1,17 +1,27 @@
 class App extends React.Component {
   constructor(props) {
-    super();
+    super(props);
+    console.log('in App constructor', window.exampleVideoData[0]);
+    this.state = {
+      dataSource: window.exampleVideoData,
+      playerSource: window.exampleVideoData[0]
+    };
+  }
+
+  updatePlayer(video) {
+    this.setState({ playerSource: video });
   }
 
   render() {
+    let updatePlayer = this.updatePlayer.bind(this);
     return (
       <div>
           <Nav />
           <div className="col-md-7">
-            <VideoPlayer video={window.exampleVideoData[3]} />
+            <VideoPlayer video={this.state.playerSource} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={window.exampleVideoData}/>
+            <VideoList videos={this.state.dataSource} update={updatePlayer}/>
           </div>
         </div>
     );
