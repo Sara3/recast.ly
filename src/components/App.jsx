@@ -1,10 +1,9 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log('in App constructor', window.exampleVideoData[0]);
     this.state = {
-      dataSource: window.exampleVideoData,
-      playerSource: window.exampleVideoData[0]
+      playerSource: window.exampleVideoData[0],
+      listSource: window.exampleVideoData
     };
   }
 
@@ -12,16 +11,26 @@ class App extends React.Component {
     this.setState({ playerSource: video });
   }
 
+  updateList(returnedData){
+    this.setState({ listSource: returnedData });
+  }
+
+  getSearchInput(query){
+    console.log("Q is:", query);
+  }
+
+
   render() {
     let updatePlayer = this.updatePlayer.bind(this);
+    let getSearchInput = this.getSearchInput.bind(this);
     return (
       <div>
-          <Nav />
+          <Nav getSearch={getSearchInput}/>
           <div className="col-md-7">
             <VideoPlayer video={this.state.playerSource} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.dataSource} update={updatePlayer}/>
+            <VideoList videos={this.state.listSource} update={updatePlayer}/>
           </div>
         </div>
     );

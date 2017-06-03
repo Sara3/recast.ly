@@ -1,5 +1,5 @@
 var VideoListEntry = (props) => (
-  <div className="video-list-entry" onClick={function(){props.update(props.video);}}>
+  <div className="video-list-entry" onClick={ function(){ props.update(props.video); } } >
     <div className="media-left media-middle">
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
