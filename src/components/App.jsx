@@ -3,7 +3,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       playerSource: window.exampleVideoData[0],
-      listSource: window.exampleVideoData
+      listSource: window.exampleVideoData,
     };
   }
 
@@ -11,14 +11,15 @@ class App extends React.Component {
     this.setState({ playerSource: video });
   }
 
-  updateList(returnedData){
+  updateList(returnedData) {
+    // alert(returnedData);
     this.setState({ listSource: returnedData });
   }
 
-  getSearchInput(query){
-    console.log("Q is:", query);
+  getSearchInput(options) {
+    // this.updateList.bind(this);
+    searchYouTube(options, this.updateList.bind(this));
   }
-
 
   render() {
     let updatePlayer = this.updatePlayer.bind(this);
